@@ -1,2 +1,3 @@
-# Python Gnome App template
-Made with GTK 4 and Libadwaita
+# AppLockGui
+
+A WIP GUI for [applock](https://github.com/Roshan-R/applock) 
