@@ -1,0 +1,67 @@
+using Gtk 4.0;
+using Adw 1;
+
+template GnomeAppWindow : ApplicationWindow {
+  default-width: 600;
+  default-height: 300;
+
+  [titlebar]
+  Adw.HeaderBar headerbar {
+    centering-policy: strict;
+
+    [title]
+      Adw.ViewSwitcherTitle view_switcher {
+      }
+    [end]
+      MenuButton {
+        icon-name: "open-menu-symbolic";
+        menu-model: primary_menu;
+      }
+   }
+   Box {
+     orientation : vertical;
+     Adw.ViewStack stack {
+       vexpand : true;
+
+         Adw.ViewStackPage {
+           title: "Status";
+           name: "page1";
+           icon-name: "emblem-synchronizing-symbolic";
+           child: .StatusPage {
+	   };
+	}
+    	Adw.ViewStackPage {
+          title: "Settings";
+	  icon-name: "emblem-system-symbolic";
+          name: "page2";
+	  child: .SettingsPage{
+          };
+        }
+     }
+
+     Adw.ViewSwitcherBar{
+       stack: stack;
+       reveal : bind view_switcher.title-visible;
+     }
+  }
+
+}
+
+menu primary_menu {
+  section {
+    item {
+      label: _("_Preferences");
+      action: "app.preferences";
+    }
+
+    item {
+      label: _("_Keyboard Shortcuts");
+      action: "win.show-help-overlay";
+    }
+
+    item {
+      label: _("_About gnome-app");
+      action: "app.about";
+    }
+  }
+}

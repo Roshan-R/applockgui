@@ -1,0 +1,4 @@
+.status_button {
+  background-color:@success_bg_color;
+  color:white;
+}

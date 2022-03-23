@@ -1,0 +1,18 @@
+using Gtk 4.0;
+using Adw 1;
+
+template StatusPage : Adw.Bin {
+  Box {
+    orientation: vertical;
+    valign: center;
+    halign: center;
+    Label {
+      label: "AppLock is Running";
+      margin-bottom: 40;
+      styles ["title-1"]
+    }
+    Button status_button{
+      label: "Click to Stop";
+      styles ["opaque", "pill"]
+  }
+}

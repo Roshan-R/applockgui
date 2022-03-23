@@ -21,7 +21,7 @@ import gi
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 
-from gi.repository import Gtk, Gio, Adw
+from gi.repository import Gtk, Gdk, Gio, Adw
 
 from .window import GnomeAppWindow, AboutDialog
 
@@ -30,6 +30,10 @@ class Application(Adw.Application):
     def __init__(self):
         super().__init__(application_id='org.example.App',
                          flags=Gio.ApplicationFlags.FLAGS_NONE)
+        css_provider = Gtk.CssProvider()
+        css_provider.load_from_resource('/org/example/App/styles.css')
+        Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
 
     def do_activate(self):
         win = self.props.active_window
