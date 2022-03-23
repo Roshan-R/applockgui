@@ -1,0 +1,21 @@
+using Gtk 4.0;
+using Adw 1;
+
+template ApplistPage : Adw.Bin {
+  vexpand: true;
+  ScrolledWindow {
+  Adw.StatusPage {
+    title: "Search for Apps";
+    description: "Use the switch to toggle applock on/off for a specific appp";
+    valign: start;
+      Box {
+        orientation: vertical;
+        SearchEntry searchentry {
+        margin-bottom: 20;
+        }
+      ListBox listbox {
+        selection-mode: none;
+        styles ["boxed-list"]
+     }
+    }
+}}

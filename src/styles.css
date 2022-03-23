@@ -2,3 +2,18 @@
   background-color:@success_bg_color;
   color:white;
 }
+
+label.subtitle {
+	 font-size: smaller;
+}
+box.header {
+	 margin-left: 12px;
+	 margin-right: 12px;
+	 min-height: 50px;
+}
+box.header > box.title {
+	 margin-top: 6px;
+	 margin-bottom: 6px;
+	 border-spacing: 3px;
+}
+ 

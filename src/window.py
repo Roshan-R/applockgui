@@ -18,6 +18,12 @@
 from gi.repository import Gtk, Gio
 from gi.repository import Adw
 
+import gobject
+
+from .statuspage import StatusPage
+from .applistpage import ApplistPage
+from .settingspage import SettingsPage
+
 import subprocess
 
 Adw.init()
@@ -34,63 +40,23 @@ class GnomeAppWindow(Gtk.ApplicationWindow):
         super().__init__(**kwargs)
         self.view_switcher.set_stack(self.stack)
 
+@Gtk.Template(resource_path='/org/example/App/row.ui')
+class AppRow(Adw.ActionRow):
+    __gtype_name__ = 'AppRow'
 
-@Gtk.Template(resource_path='/org/example/App/statuspage.ui')
-class StatusPage(Adw.Bin):
-    __gtype_name__ = 'StatusPage'
+    def get_title(self):
+        return self.get_title()
 
-    status_button: Gtk.Button = Gtk.Template.Child()
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.setup_actions()
-
-    def setup_actions(self):
-        self.status_button.connect("clicked", self.print_clicked)
-
-    def update_running_status(self):
-        if subprocess.Popen('pidof applock', shell=True, stdout=subprocess.PIPE).stdout.read():
-            print('app is running')
-        else:
-            print('not running')
-
-    def print_clicked(self, _a):
-        print("hello bois")
-        self.update_running_status()
-
-@Gtk.Template(resource_path='/org/example/App/settingspage.ui')
-class SettingsPage(Adw.Bin):
-    __gtype_name__ = 'SettingsPage'
-
-    listbox : Gtk.ListBox = Gtk.Template.Child()
-    #application_name : Gtk.Label = Gtk.Template.Child()
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-
-        applist = Gio.AppInfo.get_all()
-        for app in applist:
-            name = app.get_display_name()
-            icon = app.get_icon()
-            if icon:
-                icon = icon.get_names()[0]
-            description = app.get_description()
-            row = self.create_row(name, icon, description)
-            switch = Gtk.Switch()
-            switch.set_valign(Gtk.Align.CENTER)
-            row.add_suffix(switch)
-            self.listbox.prepend(row)
-        #self.application_name.set_text(app.get_display_name())
-        #self.application_icon.set_from_gicon(app.get_icon())
-
-    def create_row(self, title, icon, subtitle):
-        actionrow = Adw.ActionRow()
-        actionrow.set_title(title)
-        actionrow.set_icon_name(icon)
+    def __init__(self, title, subtitle, image):
+        super().__init__()
+        self.set_title(title)
         if subtitle:
-            actionrow.set_subtitle(subtitle)
-        return actionrow
+            self.set_subtitle(subtitle)
+        #if image:
+            #self.set_from_gicon(image)
+        #self.view_switcher.set_stack(self.stack)
+
+
 
 class AboutDialog(Gtk.AboutDialog):
 

@@ -1,11 +1,20 @@
 using Gtk 4.0;
 using Adw 1;
 
-template SettingsPage : Adw.Bin {
-  ScrolledWindow {
-    ListBox listbox {
-      selection-mode: none;
-      styles ["boxed-list"]
-   }
+template SettingsPage: Adw.Bin {
+  ListBox {
+    styles ["boxed-list"]
+    .AdwActionRow {
+      title: _("Password");
+        Label {
+          label: "•••••";
+          valign: center;
+          styles ["dim-label"]
+        }
+        Image {
+          icon-name: "go-next-symbolic";
+          styles ["dim-label"]
+        }
+     }
   }
 }
