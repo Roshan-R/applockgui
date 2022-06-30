@@ -7,9 +7,9 @@ blueprints = custom_target('blueprints',
     'window.blp',
     'statuspage.blp',
     'applistpage.blp',
-    'row.blp',
     'gtk/help-overlay.blp',
-    'settingspage.blp'
+    'settingspage.blp',
+    'actionrow.blp'
   ),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
@@ -45,7 +45,9 @@ gnome_app_sources = [
   'window.py',
   'statuspage.py',
   'applistpage.py',
-  'settingspage.py'
+  'settingspage.py',
+  'config.py',
+  'actionrow.py'
 ]
 
 install_data(gnome_app_sources, install_dir: moduledir)

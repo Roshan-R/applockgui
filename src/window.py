@@ -40,24 +40,6 @@ class GnomeAppWindow(Gtk.ApplicationWindow):
         super().__init__(**kwargs)
         self.view_switcher.set_stack(self.stack)
 
-@Gtk.Template(resource_path='/org/example/App/row.ui')
-class AppRow(Adw.ActionRow):
-    __gtype_name__ = 'AppRow'
-
-    def get_title(self):
-        return self.get_title()
-
-    def __init__(self, title, subtitle, image):
-        super().__init__()
-        self.set_title(title)
-        if subtitle:
-            self.set_subtitle(subtitle)
-        #if image:
-            #self.set_from_gicon(image)
-        #self.view_switcher.set_stack(self.stack)
-
-
-
 class AboutDialog(Gtk.AboutDialog):
 
     def __init__(self, parent):

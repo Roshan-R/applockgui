@@ -3,8 +3,8 @@
   <gresource prefix="/org/example/App">
     <file>window.ui</file>
     <file>statuspage.ui</file>
-    <file>row.ui</file>
     <file>applistpage.ui</file>
+    <file>actionrow.ui</file>
     <file>settingspage.ui</file>
     <file>gtk/help-overlay.ui</file>
     <file>styles.css</file>

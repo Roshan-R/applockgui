@@ -1,0 +1,71 @@
+using Gtk 4.0;
+
+Box header {
+  valign: center;
+  hexpand: false;
+
+  styles [
+    "header",
+  ]
+
+  Box prefixes {
+
+    styles [
+      "prefixes",
+    ]
+  }
+
+  Image image {
+    valign: center;
+    icon-name:"settings-symbolic";
+    styles [
+      "icon",
+    ]
+  }
+
+  Box title_box {
+    orientation: vertical;
+    valign: center;
+    hexpand: true;
+
+    styles [
+      "title",
+    ]
+
+    Label title {
+      label:"Hwllo";
+      ellipsize: none;
+      lines: 0;
+      wrap: true;
+      wrap-mode: word_char;
+      xalign: 0;
+
+      styles [
+        "title",
+      ]
+    }
+
+    Label subtitle {
+      label:"Hwllo";
+      ellipsize: none;
+      lines: 0;
+      wrap: true;
+      wrap-mode: word_char;
+      xalign: 0;
+
+      styles [
+        "subtitle",
+      ]
+    }
+  }
+
+  Box suffixes {
+
+    Switch switch{
+      valign:center;
+    }
+    styles [
+      "suffixes",
+    ]
+  }
+}
